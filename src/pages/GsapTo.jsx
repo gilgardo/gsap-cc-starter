@@ -1,12 +1,33 @@
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { useEffect } from "react";
+import { useState } from "react";
+
 const GsapTo = () => {
-  // TODO: Implement the gsap.to() method
+  const [click, setClick] = useState(false)
+
+  useGSAP(()=> {
+    if(click){
+
+      gsap.to('#blue-box',{
+        x: 250,
+        rotation: 360,
+        repeat: -1,
+        yoyo: true,
+        duration: 2,
+      })
+    }
+  },[click]);
+const handleClick = () =>{
+  setClick(prev => !prev);
+}
 
   return (
     <main>
       <h1>GsapTo</h1>
 
       <p className="mt-5 text-gray-500">
-        The <code>gsap.to()</code> method is used to animate elements from their
+        The <code>gsap.to()</code> <button onClick={handleClick}>try</button> method is used to animate elements from their
         current state to a new state.
       </p>
       <p className="mt-5 text-gray-500">
